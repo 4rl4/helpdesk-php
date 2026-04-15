@@ -3,7 +3,7 @@ include'koneksi.php'; //Mengambil kabel koneksi
 
 // cek apakah tombol kirim sudah ditekan
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nama = $_POST["nama"];
+    $nama = $_POST["nama"];  
     $laporan = $_POST["laporan"];
 
     //perintah untuk memasukkan data ke database 
