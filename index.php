@@ -48,6 +48,7 @@ $ambil_data = mysqli_query($conn, "SELECT * FROM pengaduan ORDER BY id DESC");
             <th>No</th>
             <th>Nama Pelapor</th>
             <th>Isi laporan</th>
+            <th>Aksi</th>
         </tr>
         <?php 
         $no = 1;
@@ -57,6 +58,10 @@ $ambil_data = mysqli_query($conn, "SELECT * FROM pengaduan ORDER BY id DESC");
             <td><?php echo $no++;?></td>
             <td><?php echo $row['nama'];?></td>
             <td><?php echo $row['laporan'];?></td>
+            <td>
+            <a href="hapus.php?id=<?php echo $row['id']; ?>"onclick="return confirm('Yakin ingin menghapus laporan ini?')">Hapus</a> 
+            <a href="edit.php?id=<?php echo $row['id']; ?>"onclick="return confirm('Yakin ingin mengedit laporan ini?')">Edit</a> 
+        </td>
         </tr>
         <?php } ?>
     </table>
