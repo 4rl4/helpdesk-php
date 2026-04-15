@@ -15,11 +15,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error:". mysqli_error($conn); // jika data tidak berhasil masuk ke database
     }
 }
+
+$ambil_data = mysqli_query($conn, "SELECT * FROM pengaduan ORDER BY id DESC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>              
     <title>Sistem Pengaduan - Helpdesk</title>
+    <style>
+        table {width: 100%;
+               border-collapse: collapse;
+               margin-top: 20px;}
+        th,td {border: 1px solid #ddd; padding: 10px; text-align: left;}
+        th {background-color: #f2f2f2;}
+    </style>
 </head>
 <body>
     <h1>Kirim Laporan Pengaduan</h1>
@@ -32,6 +41,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <button type="submit">Kirim Sekarang</button>
     </form>
+    <hr>
+    <h2>Daftar Laporan Masuk</h2>
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Nama Pelapor</th>
+            <th>Isi laporan</th>
+        </tr>
+        <?php 
+        $no = 1;
+        while($row = mysqli_fetch_array($ambil_data)) {
+        ?>
+        <tr>
+            <td><?php echo $no++;?></td>
+            <td><?php echo $row['nama'];?></td>
+            <td><?php echo $row['laporan'];?></td>
+        </tr>
+        <?php } ?>
+    </table>
 </body>
 </html>
 
